@@ -16,6 +16,8 @@ https://docs.npmjs.com/cli/v7/using-npm/workspaces
 
 [ ] **SETUP THE PROJECT**
 
+[ ] Create a twitter account for this dumb idea (Just create a new gmail account and create the Twitter account with it so we don't use any personal stuff)
+
 [ ] Spike and add Vercel Cron https://vercel.com/docs/cron-jobs to the `cron` package.
 
 [ ] Setup a Github Actions pipeline for CI (and probably CD if that's possible).
