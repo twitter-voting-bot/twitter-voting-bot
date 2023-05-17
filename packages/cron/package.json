@@ -1,0 +1,26 @@
+{
+  "name": "@twitter-voting-bot/cron",
+  "version": "0.0.1",
+  "description": "This is the cron job for the twitter voting bot, probably the main part of the application.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-voting-bot/twitter-voting-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "voting",
+    "versus",
+    "bot",
+    "cron"
+  ],
+  "author": "Nicolas Francisco Mateus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
+  },
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
+}

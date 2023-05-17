@@ -1,0 +1,26 @@
+{
+  "name": "@twitter-voting-bot/browser",
+  "version": "0.0.1",
+  "description": "This will handle the browser part of the application, probably we will spin a selenium or a puppeteer instance",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-voting-bot/twitter-voting-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "voting",
+    "versus",
+    "bot",
+    "browser"
+  ],
+  "author": "Nicolas Francisco Mateus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
+  },
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
+}

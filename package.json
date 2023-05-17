@@ -1,0 +1,27 @@
+{
+  "name": "twitter-voting-bot",
+  "version": "0.0.0",
+  "description": "This is a bot for twitter that will create random \"versus\" fights that people can vote to select their choice. Pretty dumb stuff.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-voting-bot/twitter-voting-bot.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [
+    "twitter",
+    "voting",
+    "versus",
+    "bot"
+  ],
+  "author": "Nicolas Mateus Francisco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
+  },
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme",
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
