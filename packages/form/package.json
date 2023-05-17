@@ -1,0 +1,26 @@
+{
+  "name": "@twitter-voting-bot/form",
+  "version": "0.0.1",
+  "description": "This will be the form that random people will fill for suggestions",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-voting-bot/twitter-voting-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "voting",
+    "versus",
+    "bot",
+    "form"
+  ],
+  "author": "Nicolas Francisco Mateus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
+  },
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
+}
