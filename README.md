@@ -14,9 +14,9 @@ https://docs.npmjs.com/cli/v7/using-npm/workspaces
 
 ## What needs to be done
 
-[ ] **SETUP THE PROJECT**
+[] **SETUP THE PROJECT**
 
-[ ] Spike and add Vercel Cron https://vercel.com/docs/cron-jobs to the `cron` package.
+[] Spike and add Vercel Cron https://vercel.com/docs/cron-jobs to the `cron` package.
 
 [ ] Setup a Github Actions pipeline for CI (and probably CD if that's possible).
 
