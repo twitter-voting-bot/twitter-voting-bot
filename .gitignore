@@ -105,3 +105,6 @@ dist
 
 # macos files
 .DS_Store
+.vercel
+
+/api/
