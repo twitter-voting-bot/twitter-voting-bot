@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "This is a bot for twitter that will create random \"versus\" fights that people can vote to select their choice. Pretty dumb stuff.",
   "scripts": {
-    "start": "vercel dev",
+    "refresh": "turbo refresh",
+    "develop": "turbo develop & vercel dev",
     "build": "turbo build",
     "deploy": "turbo build & vercel deploy --prod",
     "login": "vercel login"

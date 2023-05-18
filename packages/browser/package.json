@@ -5,7 +5,9 @@
   "types": "src/index.ts",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "swc src --out-dir dist --source-maps"
+    "develop": "swc src --out-dir dist --watch",
+    "build": "swc src --out-dir dist --source-maps",
+    "refresh": "rm -rf ./dist & npm run build"
   },
   "repository": {
     "type": "git",

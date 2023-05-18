@@ -2,9 +2,12 @@
   "name": "@twitter-voting-bot/form",
   "version": "0.0.1",
   "description": "This will be the form that random people will fill for suggestions",
-  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "swc src --out-dir dist --watch",
+    "build": "swc src --out-dir dist --source-maps",
+    "refresh": "rm -rf ./dist & npm run build"
   },
   "repository": {
     "type": "git",

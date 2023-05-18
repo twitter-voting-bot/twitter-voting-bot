@@ -1,0 +1,27 @@
+{
+  "name": "@twitter-voting-bot/api",
+  "version": "0.0.1",
+  "description": "This is the api, we should create a serverless function to deploy to vercel so this is what will be deployed to vercel. Everything else is around the packages.",
+  "main": "../../api/index.js",
+  "scripts": {
+    "develop": "swc src --out-dir ../../api --source-maps --watch",
+    "build": "swc src --out-dir ../../api --source-maps",
+    "refresh": "rm -rf ../../api && mkdir ../../api && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-voting-bot/twitter-voting-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "voting",
+    "versus",
+    "bot"
+  ],
+  "author": "Nicolas Fracisco Mateus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
+  },
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
+}
