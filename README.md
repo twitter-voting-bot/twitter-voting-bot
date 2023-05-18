@@ -12,17 +12,24 @@ I think that just an npm install might work.
 We are using npm workspaces you can see that here:
 https://docs.npmjs.com/cli/v7/using-npm/workspaces
 
+Turbo:
+https://turbo.build/repo/docs/getting-started/existing-monorepo
+
 ## What needs to be done
 
 [ ] **SETUP THE PROJECT**
 
+[ ] Logo
+
+[X] Just create a new gmail account and create the Twitter account with it so we don't use any personal stuff
+
 [ ] Create a twitter account for this dumb idea (Just create a new gmail account and create the Twitter account with it so we don't use any personal stuff)
 
-[ ] Spike and add Vercel Cron https://vercel.com/docs/cron-jobs to the `cron` package.
+[X] Spike and add Vercel Cron https://vercel.com/docs/cron-jobs to the `cron` package.
 
 [ ] Setup a Github Actions pipeline for CI (and probably CD if that's possible).
 
-[ ] Setup something like Turbopack (https://turbo.build/pack) or any other tool for _blazingly-fast_ builds (if needed, i don't really know)
+[X] Setup something like Turbopack (https://turbo.build/pack) or any other tool for _blazingly-fast_ builds (if needed, i don't really know)
 
 ---
 
