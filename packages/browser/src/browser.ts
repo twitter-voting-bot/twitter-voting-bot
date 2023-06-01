@@ -21,6 +21,7 @@ export default function browser() {
   }
 
   async function googleAuth(url: string) {
+    // We can run on stealth mode as well on browserless: https://www.browserless.io/docs/chrome-flags#running-in-stealth
     const browser = await puppeteerExtra.launch({ headless: 'new' });
     const page = await browser.newPage();
     await page.goto(url);
