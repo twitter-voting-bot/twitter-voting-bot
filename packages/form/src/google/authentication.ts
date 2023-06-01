@@ -1,7 +1,7 @@
 import { browser } from '@twitter-voting-bot/browser';
-import { logger } from '@twitter-voting-bot/utils';
 
 import { server, fileSystem } from '../std';
+import logger from '../logging';
 
 type GoogleCredentialsFileType = {
   installed: {
@@ -15,13 +15,13 @@ type GoogleCredentialsFileType = {
   };
 };
 
-const authenticationLogging = logger('form');
+const googleLogger = logger.child('google');
 // Inspired by this: https://github.com/googleapis/nodejs-local-auth/blob/main/src/index.ts
 // but a lot simpler.
 // You should read this to understand the flow: https://developers.google.com/identity/protocols/oauth2/native-app#step-2:-send-a-request-to-googles-oauth-2.0-server
 // Ignore the challenge part, we don't need that.
 export default async function authenticate(credentialsFilePath: string) {
-  const authenticateLogger = authenticationLogging.child('authenticate');
+  const authenticateLogger = googleLogger.child('authenticate');
 
   async function getCredentials() {
     const data = await fileSystem.read(credentialsFilePath);
