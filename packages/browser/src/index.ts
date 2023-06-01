@@ -1,3 +1,1 @@
-export default function teste() {
-  console.log('teste');
-}
+export { default as browser } from './browser';
