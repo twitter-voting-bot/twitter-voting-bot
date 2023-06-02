@@ -35,7 +35,7 @@ export default function browser() {
       `Starting the browser for google auth, will auth on '${url}'`
     );
     // We can run on stealth mode as well on browserless: https://www.browserless.io/docs/chrome-flags#running-in-stealth
-    const browser = await puppeteerExtra.launch({ headless: 'new' });
+    const browser = await puppeteerExtra.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto(url);
 
@@ -73,8 +73,12 @@ export default function browser() {
     // Approve the consent
     if (page.url().includes('consentsummary')) {
       googleAuthLog.debug(`It's the consent summary page, clicking continue`);
+
+      const inputs = await page.$$('input[type="checkbox"]');
+      if (inputs.length > 0) await inputs[0].click();
+
       const buttons = await page.$$('button');
-      if (buttons.length >= 3) await buttons[2].click();
+      if (buttons.length > 2) await buttons[2].click();
     }
 
     googleAuthLog.debug(`Waiting another 3 seconds to finish the auth.`);

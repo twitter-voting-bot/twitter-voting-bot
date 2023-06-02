@@ -1,16 +1,21 @@
-import { authenticate, getAccessToken } from './google';
+import { authenticate, getAccessTokenFromCallback } from './google';
 import { FILE_PATH, AUTH_DATA_FILE_PATH } from './config';
+import { formResponse } from './forms';
 
 export async function startGoogleAuthenticationFlow() {
-  const { isAuthenticated } = await authenticate(
+  const { isAuthenticated, authData } = await authenticate(
     FILE_PATH,
     AUTH_DATA_FILE_PATH
   );
-  console.log(isAuthenticated);
-  if (isAuthenticated) return;
+  if (isAuthenticated && authData) {
+    await formResponse(authData?.access_token);
+  }
 }
 
 export async function handleGoogleAuthenticationCallback(url: URL) {
-  const handler = await getAccessToken(FILE_PATH, AUTH_DATA_FILE_PATH);
+  const handler = await getAccessTokenFromCallback(
+    FILE_PATH,
+    AUTH_DATA_FILE_PATH
+  );
   await handler(url);
 }

@@ -1,9 +1,14 @@
 import { browser } from '@twitter-voting-bot/browser';
 
-import { server, fileSystem } from '../std';
+import { fileSystem } from '../std';
 import logger from '../logging';
 import type { GoogleCredentialsFileType, GoogleTokenType } from './types';
-import { RefreshTokenError } from './exceptions';
+import { NonDefinedRedirectUriError, RefreshTokenError } from './exceptions';
+import {
+  GOOGLE_AUTH_SCOPES,
+  GOOGLE_REDIRECT_PATH,
+  GOOGLE_REDIRECT_URL,
+} from '../config';
 
 const googleLogger = logger.child('google');
 let credentialsFileData: GoogleCredentialsFileType | undefined = undefined;
@@ -51,13 +56,20 @@ async function refreshForNewAccessToken(
   const authDataToWrite = {
     ...newAuthData,
     refresh_token: previousAuthData.refresh_token,
+    scopes: GOOGLE_AUTH_SCOPES,
   };
   await fileSystem.write(path, JSON.stringify(authDataToWrite));
   return authDataToWrite;
 }
 
 function getRedirectUri(credentials: GoogleCredentialsFileType) {
-  return `${credentials.installed.redirect_uris[0]}/api/forms/callback`;
+  if (credentials.installed.redirect_uris.includes(GOOGLE_REDIRECT_URL))
+    return `${GOOGLE_REDIRECT_URL}${GOOGLE_REDIRECT_PATH}`;
+  else
+    throw new NonDefinedRedirectUriError(
+      GOOGLE_REDIRECT_URL,
+      credentials.installed.redirect_uris
+    );
 }
 
 // Inspired by this: https://github.com/googleapis/nodejs-local-auth/blob/main/src/index.ts
@@ -93,6 +105,17 @@ export async function authenticate(
     const authData = JSON.parse(
       (await fileSystem.read(authDataFilePath)).text
     ) as GoogleTokenType;
+
+    const hasTheSameScopes =
+      Array.isArray(authData.scopes) &&
+      authData.scopes.join(' ') === GOOGLE_AUTH_SCOPES.join(' ');
+
+    if (!hasTheSameScopes) {
+      authenticateLogger.debug(
+        `The auth data file doesn't have the same scope as GOOGLE_AUTH_SCOPE, re-authenticating...`
+      );
+      return returnCredentials();
+    }
 
     try {
       authenticateLogger.debug(
@@ -131,10 +154,7 @@ export async function authenticate(
   url.searchParams.append('client_id', credentials.installed.client_id);
   url.searchParams.append('redirect_uri', getRedirectUri(credentials));
   url.searchParams.append('response_type', 'code');
-  url.searchParams.append(
-    'scope',
-    'https://www.googleapis.com/auth/forms.body.readonly'
-  );
+  url.searchParams.append('scope', GOOGLE_AUTH_SCOPES.join(' '));
 
   authenticateLogger.debug(
     `Got the credentials, starting the auth server and making start the login flow.`
@@ -147,10 +167,17 @@ export async function authenticate(
   };
 }
 
-export async function getAccessToken(
+/**
+ * When the callback is received from the google authentication we continue from here. This will fetch the tokens and save it in a file so we do
+ * not need to go through this hole flow again.
+ *
+ * @param credentialsFilePath - The path of the google credentials file
+ * @param authDataFilePath - The path of the auth data, this is the file path we should save the data from the tokens on.
+ */
+export async function getAccessTokenFromCallback(
   credentialsFilePath: string,
   authDataFilePath: string
-) {
+): Promise<(url: URL) => Promise<GoogleTokenType | undefined>> {
   const getAccessTokenLogger = googleLogger.child('getAccessToken');
   const credentials = await getCredentials(credentialsFilePath);
 
@@ -180,7 +207,10 @@ export async function getAccessToken(
       getAccessTokenLogger.debug(
         `Got the token '${tokenData.access_token}', saving the auth data on the file system so we can reuse on future requests.`
       );
-      await fileSystem.write(authDataFilePath, JSON.stringify(tokenData));
+      await fileSystem.write(
+        authDataFilePath,
+        JSON.stringify({ ...tokenData, scopes: GOOGLE_AUTH_SCOPES })
+      );
 
       getAccessTokenLogger.debug(`Auth data saved for future requests.`);
       return tokenData;

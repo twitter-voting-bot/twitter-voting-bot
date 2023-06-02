@@ -1,1 +1,1 @@
-export { authenticate, getAccessToken } from './authentication';
+export { authenticate, getAccessTokenFromCallback } from './authentication';
