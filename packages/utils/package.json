@@ -1,11 +1,11 @@
 {
-  "name": "@twitter-voting-bot/form",
+  "name": "@twitter-voting-bot/utils",
   "version": "0.0.1",
-  "description": "This will be the form that random people will fill for suggestions",
-  "types": "src/index.ts",
+  "description": "This is a utils package for the voting bot, this should just contain javascript/typescript code, no dependencies. Stuff like debounce, throttle functions, sleep and such.",
+  "types": "./src/index.ts",
   "main": "./dist/index.js",
   "scripts": {
-    "develop": "swc src --out-dir dist --config-file ../../.swcrc --watch",
+    "develop": "node dist/index.js",
     "build": "swc src --out-dir dist --config-file ../../.swcrc",
     "refresh": "rm -rf ./dist & npm run build"
   },
@@ -16,18 +16,13 @@
   "keywords": [
     "twitter",
     "voting",
-    "versus",
     "bot",
-    "form"
+    "utils"
   ],
-  "author": "Nicolas Francisco Mateus",
+  "author": "Nicolas Franciso Mateus",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
   },
-  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme",
-  "dependencies": {
-    "@twitter-voting-bot/browser": "*",
-    "@twitter-voting-bot/utils": "*"
-  }
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
 }

@@ -5,7 +5,9 @@
   "types": "src/index.ts",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "swc src --out-dir dist --source-maps"
+    "develop": "swc src --out-dir dist --watch",
+    "build": "swc src --out-dir dist --config-file ../../.swcrc",
+    "refresh": "rm -rf ./dist & npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/twitter-voting-bot/twitter-voting-bot/issues"
   },
-  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme"
+  "homepage": "https://github.com/twitter-voting-bot/twitter-voting-bot#readme",
+  "dependencies": {
+    "puppeteer": "^20.5.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "@twitter-voting-bot/utils": "*"
+  }
 }

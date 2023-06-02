@@ -5,6 +5,15 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "develop": {
+      "cache": false,
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "refresh": {
+      "cache": false
     }
   }
 }

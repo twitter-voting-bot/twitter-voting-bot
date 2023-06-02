@@ -2,9 +2,12 @@
   "name": "@twitter-voting-bot/cron",
   "version": "0.0.1",
   "description": "This is the cron job for the twitter voting bot, probably the main part of the application.",
-  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
-    "build": "swc src --out-dir ../../api/cron --source-maps"
+    "develop": "swc src --out-dir dist --watch",
+    "build": "swc src --out-dir dist --source-maps",
+    "refresh": "rm -rf ./dist & npm run build"
   },
   "repository": {
     "type": "git",
