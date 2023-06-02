@@ -5,7 +5,7 @@
   "types": "src/index.ts",
   "main": "./dist/index.js",
   "scripts": {
-    "develop": "node dist/index.js",
+    "develop": "swc src --out-dir dist --config-file ../../.swcrc --watch",
     "build": "swc src --out-dir dist --config-file ../../.swcrc",
     "refresh": "rm -rf ./dist & npm run build"
   },

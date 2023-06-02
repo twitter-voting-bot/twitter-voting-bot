@@ -1,1 +1,1 @@
-export { default as authenticate } from './authentication';
+export { authenticate, getAccessToken } from './authentication';

@@ -1,13 +1,16 @@
-import path from 'path';
-import { authenticate } from './google';
+import { authenticate, getAccessToken } from './google';
+import { FILE_PATH, AUTH_DATA_FILE_PATH } from './config';
 
-const FILE_PATH = path.resolve(
-  __dirname,
-  '../assets/twitter-voting-forms-bot-credentials.json'
-);
-
-async function main() {
-  await authenticate(FILE_PATH);
+export async function startGoogleAuthenticationFlow() {
+  const { isAuthenticated } = await authenticate(
+    FILE_PATH,
+    AUTH_DATA_FILE_PATH
+  );
+  console.log(isAuthenticated);
+  if (isAuthenticated) return;
 }
 
-main();
+export async function handleGoogleAuthenticationCallback(url: URL) {
+  const handler = await getAccessToken(FILE_PATH, AUTH_DATA_FILE_PATH);
+  await handler(url);
+}
